@@ -1,5 +1,5 @@
 # Flashcard Generator
-A basic flashcard application that runs on the backend with Node.js. It is essentially an API that allows users to create two different types of flash cards — one typical, the other a "cloze," where part of the text is hidden.
+A basic flashcard application that runs on the backend with Node.js. It is essentially an API that, via a CLI, allows users to create two different types of flash cards — one typical, the other a "cloze," where part of the text is hidden.
 
 ## Getting started
 
