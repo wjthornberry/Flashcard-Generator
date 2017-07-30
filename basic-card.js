@@ -22,3 +22,5 @@ function BasicFlashcard(front, back) {
         })
     };
 }
+
+module.exports = BasicFlashcard;
