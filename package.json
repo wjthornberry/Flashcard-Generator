@@ -1,0 +1,23 @@
+{
+  "name": "flashcard-generator",
+  "version": "1.0.0",
+  "description": "A basic flashcard application that runs on the backend with Node.js. It is essentially an API that, via a CLI, allows users to create two different types of flash cards — one typical, the other a \"cloze,\" where part of the text is hidden.",
+  "main": "app.js",
+  "scripts": {
+    "test": "echo \"Error: no test specified\" && exit 1"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/wjthornberry/flashcard-generator.git"
+  },
+  "keywords": [],
+  "author": "",
+  "license": "ISC",
+  "bugs": {
+    "url": "https://github.com/wjthornberry/flashcard-generator/issues"
+  },
+  "homepage": "https://github.com/wjthornberry/flashcard-generator#readme",
+  "dependencies": {
+    "inquirer": "^3.2.1"
+  }
+}
