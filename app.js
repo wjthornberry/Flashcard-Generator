@@ -1,8 +1,8 @@
 // Requires use of basic flashcard
-var basicFlashCard = require('./basic-flashcard.js');
+var basicFlashCard = require('./basic-card.js');
 
 // Requires use of cloze flashcard
-var clozeFlashcard = require('/cloze-flashcard.ks');
+var clozeFlashcard = require('/cloze-card.js');
 
 // Requires inquirer package – gathers user input
 var inquirer = require('inquirer');
