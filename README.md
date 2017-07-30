@@ -7,6 +7,6 @@ Run
 ```
 node app.js
 ```
-and follow the prompts.
+and follow the prompts to have the time of your life.
 
 
