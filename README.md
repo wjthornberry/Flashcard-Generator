@@ -7,6 +7,6 @@ Run
 ```
 node app.js
 ```
-and follow the prompts to have the time of your life.
+and follow the prompts to have the time of your life — you'll never look at flashcards the same way again or your money back. 
 
 
