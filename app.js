@@ -213,3 +213,15 @@ function askQuestion() {
     }
 };
 
+function shuffleDeck() {
+    newDeck = library.slice(0);
+    for (var i = library.length -1; i > 0; i--) {
+        var getIndex = Math.floor(Math.random() * (i + 1));
+        var shuffled = newDeck[getIndex];
+
+        newDeck[getIndex] = newDeck[i];
+        newDeck[i] = shuffled;
+    }
+    fs.writeFile('cardLibrary.json', JSON.stringify(newDeck, null, 2));
+    console.log(colors.blue('The deck of cards has been shuffled.'));
+}
