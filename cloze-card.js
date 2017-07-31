@@ -1,26 +1,17 @@
-// Requires fs
-var fs = require('fs');
-
-// Constructor
-function ClozeFlashcard(text, cloze) {
-    this.text = text;
+// Constructor function for the cloze flashcard
+function ClozeCard(text, cloze) {
+    this.text = text.split(cloze);
     this.cloze = cloze;
-    this.clozeDeleted = this.text.replace(this.cloze, '_____');
-    this.create = function() {
-        var data = {
-            text: this.text,
-            cloze: this.cloze,
-            clozeDeleted: this.clozeDeleted,
-            type: 'cloze'
-        };
-        // Adds card to log.txt
-        fs.appendFile('log.txt', JSON.stringify(data) + ';', 'utf8', function(err) {
-            // If err, log it
-            if (err) {
-                console.log(err);
-            }
-        });
-    };
-}
+};
 
-module.exports = ClozeFlashcard;
+// Constructor creates a prototype of ClozeCard
+// returns the question missing cloze
+function ClozeCardPrototype() {
+    this.clozeRemoved = function () {
+        return `${this.text[0]} ... ${this.text[1]}`;
+    };											
+};
+
+ClozeCard.prototype = new ClozeCardPrototype();
+
+module.exports = ClozeCard; 
