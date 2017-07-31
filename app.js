@@ -225,3 +225,31 @@ function shuffleDeck() {
     fs.writeFile('cardLibrary.json', JSON.stringify(newDeck, null, 2));
     console.log(colors.blue('The deck of cards has been shuffled.'));
 }
+
+// Asks a question from a random card
+function randomCard() {
+    var randomNumber = Math.floor(Math.random() * (library.length - 1));
+
+    playedCard = getQuestion(library[randomNumber]);
+        inquirer.prompt([
+            {
+                type: 'input',
+                message: playedCard,
+                name: 'question'
+            }
+        ]).then(function (answer) {
+            if (answer.question === library[randomNumber].back || answer.question === library[randomNumber].cloze) {
+                console.log(colors.green('Yes, that\'s correct!'));
+                setTimeout(openMenu, 1000);
+            } else {
+                // checks to see whether the random flashcard is a basic or a cloze 
+                if (drawnCard.front !== undefined) {
+                    console.log(colors.red('I\'m sorry, the correct answer is ') + library[randomNumber].back + '.');
+                    setTimeout(openMenu, 1000);
+                } else {
+                    console.log(colors.red('I\'m sorry, the correct answer is ') + library[randomNuber].cloze + '.');
+                    setTimeout(openMenu, 1000);
+                }                
+            }
+        });
+}
