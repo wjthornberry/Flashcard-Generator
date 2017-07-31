@@ -252,4 +252,37 @@ function randomCard() {
                 }                
             }
         });
+};
+
+// Prints all the cards for the user to read
+function showCards() {
+    var library = require('./cardLibrary.json');
+
+    if (count < library.length) {
+
+        if (library[count].front !== undefined) {
+            console.log('');
+            console.log(colors.orange('---------- Basic Card ----------'));
+            console.log(colors.orange('--------------------------------'));
+            console.log('Front: ' + library[count].front);
+            console.log('--------------------------------');
+            console.log('Back: ' + library[count].back + '.');
+            console.log(colors.orange('--------------------------------'));
+            console.log('');
+        } else {
+            console.log('');
+            console.log(colors.yellow('---------- Cloze Card ----------'));
+            console.log(colors.yellow('--------------------------------'));
+            console.log('Text: ' + library[count].text);
+            console.log('--------------------------------');
+            console.log('Cloze: ' + library[count].cloze + '.');
+            console.log(colors.yellow('--------------------------------'));
+            console.log('');
+        }
+        count++;
+        showCards();
+    } else {
+        count = 0;
+        openMenu();
+    }
 }
