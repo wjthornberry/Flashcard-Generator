@@ -8,7 +8,7 @@ var inquirer = require('inquirer');
 var BasicCard = require('./basic-card.js');
 
 // Requires use of cloze flashcard
-var ClozeCard = require('/cloze-card.js');
+var ClozeCard = require('./cloze-card.js');
 
 // Requires flashcard library
 var library = require('./cardLibrary.json');
@@ -17,7 +17,7 @@ var library = require('./cardLibrary.json');
 var colors = require('colors');
 
 var drawnCard;
-var readCard;
+var playedçCard;
 var count = 0;
 
 // App starts. Give user option to either create new flashcards or use the existing ones
@@ -33,8 +33,9 @@ function mainMenu() {
         var waitMsg;
 
         switch (answer.menuOptions) {
+
             case 'Create New Ones':
-                console.log('Great! Let\s make some new flashcards!');
+                console.log('Great! Let\'s make some new flashcards!');
                 waitMsg = setTimeout(createCard, 1000);
                 break;
             
@@ -71,6 +72,8 @@ function mainMenu() {
     });
 }
 
+mainMenu();
+
 // If user decides to create a flashcard, the below function runs
 function createCard() {
     inquirer.prompt([
@@ -94,7 +97,7 @@ function createCard() {
                 },
                 {
                     type: 'input',
-                    message: 'Now, fill out the back of your card (hint: this is where your answer will go',
+                    message: 'Now, fill out the back of your card (hint: this is where your answer will go)',
                     name: 'back'
                 }
             ]).then(function (cardData) {
@@ -124,7 +127,7 @@ function createCard() {
                         createCard();
                     // Otherwise, go back to the main menu
                     } else {
-                        setTimeout(openMenu, 1000);
+                        setTimeout(mainMenu, 1000);
                     }
                 });
             });
@@ -174,7 +177,7 @@ function createCard() {
                         createCard();
                     // Otherwise, return to the main menu
                     } else {
-                        setTimeout(openMenu, 1000);
+                        setTimeout(mainMenu, 1000);
                     }
                 });
             });
@@ -194,7 +197,7 @@ function getQuestion(card) {
 };
 
 // Asks questions from the cards that are stored in the library
-function askQuestion() {
+function askQuestions() {
     if (count < library.length) {
         playedCard = getQuestion(library[count]);
         // Inquirer asks question from playedCard
@@ -220,7 +223,7 @@ function askQuestion() {
         });
     } else {
         count = 0;
-        openMenu();
+        mainMenu();
     }
 };
 
@@ -253,15 +256,15 @@ function randomCard() {
         ]).then(function (answer) {
             if (answer.question === library[randomNumber].back || answer.question === library[randomNumber].cloze) {
                 console.log(colors.green('Yes, that\'s correct!'));
-                setTimeout(openMenu, 1000);
+                setTimeout(mainMenu, 1000);
             } else {
                 // checks to see whether the random flashcard is a basic or a cloze 
                 if (drawnCard.front !== undefined) {
                     console.log(colors.red('I\'m sorry, the correct answer is ') + library[randomNumber].back + '.');
-                    setTimeout(openMenu, 1000);
+                    setTimeout(mainMenu, 1000);
                 } else {
-                    console.log(colors.red('I\'m sorry, the correct answer is ') + library[randomNuber].cloze + '.');
-                    setTimeout(openMenu, 1000);
+                    console.log(colors.red('I\'m sorry, the correct answer is ') + library[randomNumber].cloze + '.');
+                    setTimeout(mainMenu, 1000);
                 }                
             }
         });
@@ -275,12 +278,12 @@ function showCards() {
 
         if (library[count].front !== undefined) {
             console.log('');
-            console.log(colors.orange('---------- Basic Card ----------'));
-            console.log(colors.orange('--------------------------------'));
+            console.log(colors.yellow('---------- Basic Card ----------'));
+            console.log(colors.yellow('--------------------------------'));
             console.log('Front: ' + library[count].front);
             console.log('--------------------------------');
             console.log('Back: ' + library[count].back + '.');
-            console.log(colors.orange('--------------------------------'));
+            console.log(colors.yellow('--------------------------------'));
             console.log('');
         } else {
             console.log('');
@@ -296,6 +299,6 @@ function showCards() {
         showCards();
     } else {
         count = 0;
-        openMenu();
+        mainMenu();
     }
 }

@@ -8,7 +8,7 @@ function ClozeCard(text, cloze) {
 // returns the question missing cloze
 function ClozeCardPrototype() {
     this.clozeRemoved = function () {
-        return `${this.text[0]} ... ${this.text[1]}`;
+        return `${this.text[0]} ${this.text[1]}`;
     };											
 };
 

@@ -1,5 +1,10 @@
 [
   {
+    "type": "BasicCard",
+    "front": "According to Michael, from 'Arrested Development', what is the most important thing in life?",
+    "back": "Breakfast"
+  },
+  {
     "type": "ClozeCard",
     "text": "Gobs puppet, Franklin, has a big hit called It Ain't Easy Being White.",
     "cloze": "It Ain't Easy Being White"
@@ -11,28 +16,13 @@
   },
   {
     "type": "BasicCard",
-    "front": "According to Michael, from 'Arrested Development', what is the most important thing in life?",
-    "back": "Breakfast"
-  },
-  {
-    "type": "ClozeCard",
-    "text": "Michael and his son, George Michael, have honored the 'Take Your Daughter to Work Day' tradition for years.",
-    "cloze": "Take Your Daughter to Work Day"
+    "front": "Buster has a proclivity for?",
+    "back": "Backrubs"
   },
   {
     "type": "ClozeCard",
     "text": "The made-up English section of Orange County is called Tiny London Town.",
     "cloze": "Tiny London Town"
-  },
-  {
-    "type": "ClozeCard",
-    "text": "'No touching' is one of Arrested Development's frequenty recurring jokes.",
-    "cloze": "No touching"
-  },
-  {
-    "type": "BasicCard",
-    "front": "Buster has a proclivity for?",
-    "back": "Backrubs"
   },
   {
     "type": "BasicCard",
@@ -41,8 +31,8 @@
   },
   {
     "type": "ClozeCard",
-    "text": "f",
-    "cloze": "f"
+    "text": "'No touching' is one of Arrested Development's frequenty recurring jokes.",
+    "cloze": "No touching"
   },
   {
     "type": "BasicCard",
@@ -50,14 +40,14 @@
     "back": "Tobias"
   },
   {
-    "type": "BasicCard",
-    "front": "",
-    "back": ""
-  },
-  {
     "type": "ClozeCard",
     "text": "Tobias auditions for The Blue Man Group.",
     "cloze": "The Blue Man Group"
+  },
+  {
+    "type": "ClozeCard",
+    "text": "Michael and his son, George Michael, have honored the 'Take Your Daughter to Work Day' tradition for years.",
+    "cloze": "Take Your Daughter to Work Day"
   },
   {
     "type": "BasicCard",
@@ -66,7 +56,12 @@
   },
   {
     "type": "BasicCard",
-    "front": "t",
-    "back": "t"
+    "front": "",
+    "back": ""
+  },
+  {
+    "type": "ClozeCard",
+    "text": "f",
+    "cloze": "f"
   }
 ]
