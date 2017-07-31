@@ -81,7 +81,7 @@ function createCard() {
             name: 'cardType'
         }
     ]).then(function (appData) {
-        // the cardType variable stores the user's choice taken from the cardType inquirer object
+        // The cardType variable stores the user's choice taken from the cardType inquirer object
         var cardType = appData.cardType;
         console.log(cardType);
 
@@ -104,9 +104,9 @@ function createCard() {
                     front: cardData.front,
                     back: cardData.back
                 };
-                // pushes the newly-added card into the card array
+                // Pushes the newly-added card into the card array
                 library.push(cardObj);
-                // writes the updated card array to cardLibrary.json 
+                // Writes the updated card array to cardLibrary.json 
                 fs.writeFile('cardLibrary.json', JSON.stringify(library, null, 2));
 
                 inquirer.prompt([
@@ -124,11 +124,51 @@ function createCard() {
                     }
                 });
             });
-        // else, create a cloze flashcard
+        // Otherwise, create a cloze flashcard
         } else {
-
+            inquirer.prompt([
+                {
+                    type: 'input',
+                    message: 'Type out the entirety of your text here.',
+                    name: 'text'
+                },
+                {
+                    type: 'input',
+                    message: 'Now, please type the portion of that text that you would like to hide.',
+                    name: 'cloze'
+                }
+            // Once the user enters his/her/their info, call this function
+            ]).then(function (cardData) {
+                var cardObj = {
+                    type: 'ClozeCard',
+                    text: cardData.text,
+                    cloze: cardData.cloze
+                };
+                // Here, we ensure that the cloze section matches some of the text in the original text
+                if (cardObj.text.indexOf(cardObj.cloze) !== -1) {
+                    // If so, push the newly-created card into the card array
+                    library.push(cardObj);
+                    // Write the updated array to the cardLibrary file
+                    fs.writeFile('cardLibary.json', JSON.stringify(library, null, 2));
+                    // If, however, the cloze does not match, send a msg to the user
+                } else {
+                    console.log('Uh oh! The cloze must match at least some word(s) from the original text you provided.');
+                }
+                inquirer.prompt([
+                    {
+                        type: 'list',
+                        message: 'Would you like to create another card?',
+                        choices: ['Yes', 'Nope'],
+                        name: 'anotherCard'
+                    }
+                ]).then(function (appData) {
+                    if (appData.anotherCard === 'Yes') {
+                        createCard();
+                    } else {
+                        setTimeout(openMenu, 1000);
+                    }
+                });
+            });
         }
-        })
-        }
-    })
-}
+    });
+};
