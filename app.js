@@ -70,3 +70,65 @@ function mainMenu() {
         }
     });
 }
+
+// If user decides to create a flashcard, the below function runs
+function createCard() {
+    inquirer.prompt([
+        {
+            type: 'list',
+            message: 'Which type of flashcard would you like to create?',
+            choices: ['Basic Card', 'Cloze Card'],
+            name: 'cardType'
+        }
+    ]).then(function (appData) {
+        // the cardType variable stores the user's choice taken from the cardType inquirer object
+        var cardType = appData.cardType;
+        console.log(cardType);
+
+        if (cardType === 'Basic Card') {
+            inquirer.prompt([
+                {
+                    type: 'input',
+                    message: 'Fill out the front of your card (hint: your question goes here!)',
+                    name: 'front'
+                },
+                {
+                    type: 'input',
+                    message: 'Now, fill out the back of your card (hint: this is where your answer will go',
+                    name: 'back'
+                }
+            ]).then(function (cardData) {
+                // This builds an object that contains the front and back information
+                var cardObj = {
+                    type: 'BasicCard',
+                    front: cardData.front,
+                    back: cardData.back
+                };
+                // pushes the newly-added card into the card array
+                library.push(cardObj);
+                // writes the updated card array to cardLibrary.json 
+                fs.writeFile('cardLibrary.json', JSON.stringify(library, null, 2));
+
+                inquirer.prompt([
+                    {
+                        type: 'list',
+                        message: 'Would you like to create another card?',
+                        choices: ['Yes, I would.', 'No, thanks.'],
+                        name: 'anotherCard'
+                    }
+                ]).then(function (appData) {
+                    if (appData.anotherCard === 'Yes, I would.') {
+                        createCard();
+                    } else {
+                        setTimeout(openMenu, 1000);
+                    }
+                });
+            });
+        // else, create a cloze flashcard
+        } else {
+
+        }
+        })
+        }
+    })
+}
