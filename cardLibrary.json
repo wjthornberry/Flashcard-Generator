@@ -1,0 +1,14 @@
+[
+    {
+        "type": "BasicCard",
+        "front": "?",
+        "back": ""
+    },
+    {
+        "type": "ClozeCard",
+        "text": "?",
+        "cloze": "",
+    }
+]
+
+
