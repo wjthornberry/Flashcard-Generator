@@ -172,3 +172,44 @@ function createCard() {
         }
     });
 };
+
+// Gets the question from the drawnCard in the askQuestions function
+function getQuestion(card) {
+    if (card.type === 'BasicCard') {
+        drawnCard = new BasicCard(card.front, card.back);
+        return drawnCard.front;
+    } else if (card.type === 'ClozeCard') {
+        drawnCard = new ClozeCard(card.text, card.cloze)
+        return drawnCard.clozeRemoved();
+    }
+};
+
+// Asks questions from the cards that are stored in the library
+function askQuestion() {
+    if (count < library.length) {
+        playedCard = getQuestion(library[count]);
+        inquirer.prompt([
+            {
+                type: 'input',
+                message: playedCard,
+                name: 'question'
+            }
+        ]).then(function (answer) {
+            if (answer.question === library[count].back || answer.question === library[count].cloze) {
+                console.log(colors.green('That\'s correct!'));
+            } else {
+                if (drawnCard.front !== undefined) {
+                    console.log(colors.red('The correct answer was ') + library[count].back + '.');
+                } else {
+                    console.log(colors.red('The correct answer was ') + library[count].cloze + '.');
+                }
+            }
+            count++;
+            askQuestions();
+        });
+    } else {
+        count = 0;
+        openMenu();
+    }
+};
+
