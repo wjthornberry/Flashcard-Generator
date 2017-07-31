@@ -109,6 +109,7 @@ function createCard() {
                 // Writes the updated card array to cardLibrary.json 
                 fs.writeFile('cardLibrary.json', JSON.stringify(library, null, 2));
 
+                // Asks the user whether he/she/they would like to continue making cards
                 inquirer.prompt([
                     {
                         type: 'list',
@@ -116,9 +117,12 @@ function createCard() {
                         choices: ['Yes, I would.', 'No, thanks.'],
                         name: 'anotherCard'
                     }
+                    // User gives an answer
                 ]).then(function (appData) {
                     if (appData.anotherCard === 'Yes, I would.') {
+                        // If 'yes,' calls this function again
                         createCard();
+                    // Otherwise, go back to the main menu
                     } else {
                         setTimeout(openMenu, 1000);
                     }
@@ -139,6 +143,7 @@ function createCard() {
                 }
             // Once the user enters his/her/their info, call this function
             ]).then(function (cardData) {
+                // An object built from the user's text and cloze information
                 var cardObj = {
                     type: 'ClozeCard',
                     text: cardData.text,
@@ -154,6 +159,7 @@ function createCard() {
                 } else {
                     console.log('Uh oh! The cloze must match at least some word(s) from the original text you provided.');
                 }
+                // Ask the user whether he/she/they would like to continue making cards
                 inquirer.prompt([
                     {
                         type: 'list',
@@ -161,9 +167,12 @@ function createCard() {
                         choices: ['Yes', 'Nope'],
                         name: 'anotherCard'
                     }
+                    // After the user gives an answer
                 ]).then(function (appData) {
                     if (appData.anotherCard === 'Yes') {
+                        // call the createCard fx
                         createCard();
+                    // Otherwise, return to the main menu
                     } else {
                         setTimeout(openMenu, 1000);
                     }
@@ -188,6 +197,7 @@ function getQuestion(card) {
 function askQuestion() {
     if (count < library.length) {
         playedCard = getQuestion(library[count]);
+        // Inquirer asks question from playedCard
         inquirer.prompt([
             {
                 type: 'input',
@@ -197,6 +207,7 @@ function askQuestion() {
         ]).then(function (answer) {
             if (answer.question === library[count].back || answer.question === library[count].cloze) {
                 console.log(colors.green('That\'s correct!'));
+            // Check whether the current card is a basic one or a cloze
             } else {
                 if (drawnCard.front !== undefined) {
                     console.log(colors.red('The correct answer was ') + library[count].back + '.');
@@ -214,6 +225,7 @@ function askQuestion() {
 };
 
 function shuffleDeck() {
+    // Copies the flashcards into a new array
     newDeck = library.slice(0);
     for (var i = library.length -1; i > 0; i--) {
         var getIndex = Math.floor(Math.random() * (i + 1));
@@ -231,6 +243,7 @@ function randomCard() {
     var randomNumber = Math.floor(Math.random() * (library.length - 1));
 
     playedCard = getQuestion(library[randomNumber]);
+        // Inquirer asks a question from the playedCard
         inquirer.prompt([
             {
                 type: 'input',
